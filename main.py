@@ -10,14 +10,27 @@ import pandas as pd
 from datetime import datetime as dt
 import json
 
-external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+# external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+external_stylesheets = [
+    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css',
+    {
+        'href': 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css',
+        'rel': 'stylesheet',
+    }
+]
+
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 app.layout = html.Div([
-  html.Div(children = [
+  html.Div(
+    className="navbar navbar-inverse",
+    children = [
+    html.H1(children = "Digital Device Shopping Trend", style = {'color':'white'}),
     dcc.DatePickerSingle(
       #Start_date
+      className="dropdown col-md-1",
       id='startDate', 
         min_date_allowed=dt(2010, 1, 1),
         max_date_allowed=dt(2099, 12, 31),
@@ -26,14 +39,21 @@ app.layout = html.Div([
     ), 
     dcc.DatePickerSingle(
       #End_date
+      className="dropdown col-md-1",
       id='endDate',
         min_date_allowed=dt(2010, 1, 1),
         max_date_allowed=dt(2099, 12, 31),
         initial_visible_month=dt(2020, 5, 1),
         date=str(dt(2020, 5, 1))[0:10]
-    ), 
+    )
+    ]
+  ),
+  html.Div(
+    className="navbar",
+    children = [
     dcc.Dropdown(
       #Time_Unit
+      className="dropdown col-md-3",
       id='timeUnit',
       options=[
         {'label': 'Date', 'value': 'date'},
@@ -44,6 +64,7 @@ app.layout = html.Div([
     ), 
     dcc.Dropdown(
       #Device
+      className="dropdown col-md-3",
       id='device',
       options=[
         {'label': 'PC', 'value': 'pc'},
@@ -53,6 +74,7 @@ app.layout = html.Div([
     ), 
     dcc.Dropdown(
       #Gender
+      className="dropdown col-md-3",
       id='gender',
       options=[
         {'label': 'male', 'value': 'm'},
@@ -62,6 +84,7 @@ app.layout = html.Div([
     ), 
     dcc.Dropdown(
       #ages
+      className="dropdown col-md-3",
       id='ages',
       options=[
         {'label': '10', 'value': '10'},
@@ -77,23 +100,31 @@ app.layout = html.Div([
 
   # clicktrend_linechart
   html.Div(
+    children=[
+    html.H2(children='Click Trend'),
     dcc.Graph(
       id='clicktrend_linechart'
-    )
+    )]
   ),
   # Pie_Charts
   html.Div([
     # deviceshare_piechart
     html.Div(
+      children=[
+      html.H2(children='Share by Device'),
       dcc.Graph(
         id='deviceshare_piechart'
-      )
+      )],
+      className="col-md-5"
     ),
     # gendershare_piechart
     html.Div(
+      children=[
+      html.H2(children='Share by Gender'),
       dcc.Graph(
         id='gendershare_piechart'
-      )
+      )],
+      className="col-md-5"
     )
   ]),
 ])
@@ -158,7 +189,8 @@ def deviceshare_piechart(startDate, endDate, timeUnit, gender, ages):
     {
       'values' : [mobile_total,pc_total],
       'type' : 'pie',
-    }
+    },
+    
   ]
   return {
     'data':data,
@@ -169,9 +201,9 @@ def deviceshare_piechart(startDate, endDate, timeUnit, gender, ages):
         'b':15,
         't':15
       },
-      'legend' :{
-        'x':'PC',
-        'y':'Mobile'
+    'legend' :{
+      'x':'PC',
+      'y':'Mobile'
       }
       }
     }
@@ -213,9 +245,9 @@ def gendershare_piechart(startDate, endDate, timeUnit, device, ages):
         'b':15,
         't':15
       },
-      'legend' :{
-        'x':'female',
-        'y':'male'
+    'legend' :{
+      'x':'female',
+      'y':'male'
       }
       }
     }
