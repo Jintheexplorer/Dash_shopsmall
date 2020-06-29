@@ -188,6 +188,7 @@ def deviceshare_piechart(startDate, endDate, timeUnit, gender, ages):
   data = [
     {
       'values' : [mobile_total,pc_total],
+      'labels' : ['mobile','pc'],
       'type' : 'pie',
     },
     
@@ -199,14 +200,9 @@ def deviceshare_piechart(startDate, endDate, timeUnit, gender, ages):
         'l':0,
         'r':0,
         'b':15,
-        't':15
-      },
-    'legend' :{
-      'x':'PC',
-      'y':'Mobile'
+        't':15}
+        }
       }
-      }
-    }
 
 @app.callback(Output('gendershare_piechart', 'figure'),[
   Input('startDate', 'date'),
@@ -233,6 +229,7 @@ def gendershare_piechart(startDate, endDate, timeUnit, device, ages):
   data = [
     {
       'values' : [female_total,male_total],
+      'labels' :['Female', 'Male'],
       'type' : 'pie',
     }
   ]
@@ -243,12 +240,7 @@ def gendershare_piechart(startDate, endDate, timeUnit, device, ages):
         'l':0,
         'r':0,
         'b':15,
-        't':15
-      },
-    'legend' :{
-      'x':'female',
-      'y':'male'
-      }
+        't':15}
       }
     }
 
