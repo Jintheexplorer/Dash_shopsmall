@@ -189,7 +189,7 @@ def deviceshare_piechart(startDate, endDate, timeUnit, gender, ages):
     {
       'values' : [mobile_total,pc_total],
       'labels' : ['mobile','pc'],
-      'type' : 'pie',
+      'type' : 'pie'
     },
     
   ]
