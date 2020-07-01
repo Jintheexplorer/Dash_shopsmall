@@ -140,7 +140,7 @@ app.layout = html.Div([
 
 def update_linechart(startDate, endDate, timeUnit, device, gender, ages):
   params = {'startDate':startDate,'endDate':endDate,'timeUnit':timeUnit,'device':device,'gender':gender,'ages':ages}
-  URL = "https://Shopsmall--jintheexplorer.repl.co/saveclicktrend"
+  URL = "3.34.2.70/saveclicktrend"
   # Response 된 값을 response 로 받아라
   response = requests.get(URL, params=params) #params= params
   result = json.loads(response.text)
@@ -172,7 +172,7 @@ def update_linechart(startDate, endDate, timeUnit, device, gender, ages):
 ])
 def deviceshare_piechart(startDate, endDate, timeUnit, gender, ages):
   params = {'startDate':startDate,'endDate':endDate,'timeUnit':timeUnit,'gender':gender,'ages':ages}
-  URL = "https://Shopsmall--jintheexplorer.repl.co/savedeviceshare"
+  URL = "3.34.2.70/savedeviceshare"
   # Response 된 값을 response 로 받아라
   response = requests.get(URL, params=params) #params= params
   result = json.loads(response.text)
@@ -213,7 +213,7 @@ def deviceshare_piechart(startDate, endDate, timeUnit, gender, ages):
 ])
 def gendershare_piechart(startDate, endDate, timeUnit, device, ages):
   params = {'startDate':startDate,'endDate':endDate,'timeUnit':timeUnit,'device':device,'ages':ages}
-  URL = "https://Shopsmall--jintheexplorer.repl.co/savegendershare"
+  URL = "3.34.2.70/savegendershare"
   # Response 된 값을 response 로 받아라
   response = requests.get(URL, params=params) #params= params
   result = json.loads(response.text)
